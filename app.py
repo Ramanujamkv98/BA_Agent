@@ -3,8 +3,8 @@ import openai
 from fpdf import FPDF
 
 # ✅ Set your API key here (for local testing only)
-openai.api_key =st.secrets["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"]  
-# For deployment, use st.secrets["OPENAI_API_KEY"]
+openai.api_key = st.secrets["OPENAI_API_KEY"]
+
 
 st.set_page_config(page_title="Requirements Gathering Assistant")
 st.title("📝 AI Requirements Gathering Assistant")
