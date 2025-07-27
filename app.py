@@ -9,11 +9,16 @@ st.set_page_config(page_title="AI Business Analyst Assistant", page_icon="📝",
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
 # Add logo above the title
-st.image("https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp", width=120)  # Ensure logo.png is in the repo
+# Centered logo above the title
 st.markdown(
-    "<h1 style='text-align: center; color: white;'>📝 AI Business Analyst Assistant</h1>",
+    """
+    <div style='text-align: center;'>
+        <img src='https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp' width='120'>
+    </div>
+    """,
     unsafe_allow_html=True
 )
+
 st.markdown(
     "<p style='text-align: center; color: white;'>Generate user stories, acceptance criteria, and BRD summaries with smart technology recommendations.</p>",
     unsafe_allow_html=True
@@ -51,7 +56,8 @@ def generate_requirements(name, description, industry, methodology, technology):
         model="gpt-4o-mini",
         messages=[{"role": "user", "content": prompt}]
     )
-    return response.choices[0].message["content"]
+    return response.choices[0].message.content
+
 
 # Generate button
 if st.button("🚀 Generate Requirements"):
