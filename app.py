@@ -97,7 +97,7 @@ def create_jira_ticket(summary: str, description: str) -> str:
     return new_issue.key
 
 # —————— Your main app ——————
-st.title("AI Requirements Gathering Assistant")
+
 # … your inputs & OpenAI logic here …
 # Let's assume you stored the AI output in:
 #    st.session_state["generated_text"]
