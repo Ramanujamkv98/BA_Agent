@@ -79,3 +79,18 @@ if "generated_text" in st.session_state:
 
     with open("requirements.pdf", "rb") as file:
         st.download_button("📄 Download as PDF", file, "requirements.pdf", "application/pdf")
+
+from jira import JIRA
+
+def create_jira_ticket(summary, description):
+    jira_options = {"server": "domain"}
+    jira = JIRA(options=jira_options, basic_auth=("your-email", "your-api-token"))
+
+    new_issue = jira.create_issue(
+        project="PROJ",  # Replace with your project key
+        summary=summary,
+        description=description,
+        issuetype={"name": "Task"}
+    )
+    return new_issue.key
+
