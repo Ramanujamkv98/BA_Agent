@@ -3,7 +3,7 @@ from fpdf import FPDF
 import openai
 
 # Set page configuration
-st.set_page_config(page_title="AI Business Analyst Assistant", page_icon="📝", layout="centered")
+st.set_page_config(page_title="AI Requirements Gathering Assistant", layout="centered")
 
 # Load OpenAI API key from secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
