@@ -4,7 +4,6 @@ from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
 
-# --------- CUSTOM CSS (ChatGPT-like UI) ----------
 st.markdown("""
     <style>
         .stApp {
@@ -16,6 +15,13 @@ st.markdown("""
             font-weight: bold;
             text-align: center;
             padding: 10px;
+            color: #202123;  /* Darker text */
+        }
+        .subtitle-text {
+            text-align: center;
+            font-size: 16px;
+            color: #3c4043;  /* Dark gray */
+            margin-bottom: 20px;
         }
         .chat-box {
             background-color: #ffffff;
@@ -25,6 +31,7 @@ st.markdown("""
             margin-bottom: 15px;
             font-size: 16px;
             box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
+            color: #202123;  /* Ensure output text is visible */
         }
         .stButton button {
             width: 100%;
@@ -37,9 +44,11 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
+
 # --------- PAGE TITLE ----------
 st.markdown('<p class="title-text">📝 AI Business Analyst Assistant</p>', unsafe_allow_html=True)
-st.write("Generate **user stories, acceptance criteria, and BRD summaries** based on methodology & technology.")
+st.markdown('<p class="subtitle-text">Generate user stories, acceptance criteria, and BRD summaries based on methodology & technology.</p>', unsafe_allow_html=True)
+
 
 # --------- INPUTS ----------
 project_name = st.text_input("📌 Project Name")
