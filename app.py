@@ -4,23 +4,20 @@ from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
 st.markdown(
-    """
-    <style>
-        .logo-container {
-            position: absolute;
-            top: 15px;
-            left: 20px;
-        }
-        .logo-container img {
-            width: 120px; /* Change this to increase size */
-        }
-    </style>
-    <div class="logo-container">
-        <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp">
+    f"""
+    <div style="display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
+        <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp"width:80px; margin-right:15px;">
+        <div>
+            <h1 style="margin:0; font-size:28px; color:white;">📝 AI Business Analyst Assistant</h1>
+            <p style="margin:0; color:#ddd; font-size:16px;">
+                Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.
+            </p>
+        </div>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 
 # --------- CUSTOM CSS for BLACK BACKGROUND + WHITE TEXT ----------
@@ -70,9 +67,6 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# --------- PAGE TITLE ----------
-st.markdown('<p class="title-text">📝 AI Business Analyst Assistant</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle-text">Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.</p>', unsafe_allow_html=True)
 
 # --------- INPUT SECTION ----------
 project_name = st.text_input("📌 Project Name")
