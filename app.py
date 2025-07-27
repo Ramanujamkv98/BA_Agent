@@ -8,29 +8,11 @@ st.markdown(
     <style>
         .top-left-logo {
             position: fixed;
-            top: 15px;
-            left: 20px;
-            width: 60px;
-            z-index: 999;
-        }
-
-        /* Push the page content slightly to the right & down */
-        .main > div {
-            padding-top: 80px !important;
-            padding-left: 80px !important;
-        }
-
-        /* For smaller screens */
-        @media (max-width: 768px) {
-            .top-left-logo {
-                width: 45px;
-                top: 10px;
-                left: 10px;
-            }
-            .main > div {
-                padding-top: 70px !important;
-                padding-left: 65px !important;
-            }
+            top: 10px;
+            left: 10px;
+            width: 50px;       /* Try reducing this to 40px or 30px */
+            height: auto;
+            object-fit: contain;  /* Ensures full logo is visible */
         }
     </style>
     <img class="top-left-logo" src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp">
