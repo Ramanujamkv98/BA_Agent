@@ -4,17 +4,36 @@ from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
 st.markdown(
-    f"""
-    <div style="display:flex; align-items:center; justify-content:center; margin-bottom:10px;">
-        <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp"width:80px; margin-right:15px;">
-        <div>
-            <h1 style="margin:0; font-size:28px; color:white;">📝 AI Business Analyst Assistant</h1>
-            <p style="margin:0; color:#ddd; font-size:16px;">
-                Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.
-            </p>
-        </div>
-    </div>
+    """
+    <style>
+        .top-right-logo {
+            position: fixed;
+            top: 15px;
+            right: 20px;
+            width: 60px;  /* Default size */
+        }
+
+        /* Make it smaller on mobile screens */
+        @media (max-width: 768px) {
+            .top-right-logo {
+                width: 45px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+    </style>
+    <img class="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp" src="PASTE-YOUR-RAW-URL-HERE">
     """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<h1 style='text-align:center; color:white;'>📝 AI Business Analyst Assistant</h1>",
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    "<p style='text-align:center; color:#ddd;'>Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.</p>",
     unsafe_allow_html=True
 )
 
