@@ -105,7 +105,7 @@ if st.session_state.get("generated_text"):
     if st.button("Create Jira Ticket"):
         try:
             issue_key = create_jira_ticket(
-                summary="Requirements for " + st.session_state["project_name"],
+                summary="Requirements for " + st.session_state["(Example) Fitness and Health Goals"],
                 description=st.session_state["generated_text"]
             )
             st.success(f"✅ Jira Ticket Created: {issue_key}")
