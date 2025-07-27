@@ -19,18 +19,6 @@ st.markdown(
 
 
 
-st.markdown(
-    "<h1 style='text-align:center; color:white;'>📝 AI Business Analyst Assistant</h1>",
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    "<p style='text-align:center; color:#ddd;'>Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.</p>",
-    unsafe_allow_html=True
-)
-
-
-
 # --------- CUSTOM CSS for BLACK BACKGROUND + WHITE TEXT ----------
 st.markdown("""
     <style>
