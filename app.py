@@ -108,6 +108,15 @@ if "generated_text" in st.session_state:
         pdf.set_auto_page_break(auto=True, margin=15)
         pdf.add_page()
         pdf.set_font("Arial", size=12)
+        
+
+
+# Convert text to Latin-1 (remove unsupported characters)
+clean_text = st.session_state["generated_text"].encode("latin-1", "replace").decode("latin-1")
+
+pdf.multi_cell(0, 10, clean_text)
+pdf.output("requirements.pdf")
+
         pdf.multi_cell(0, 10, st.session_state["generated_text"])
         pdf.output("requirements.pdf")
 
