@@ -80,30 +80,47 @@ if "generated_text" in st.session_state:
     with open("requirements.pdf", "rb") as file:
         st.download_button("📄 Download as PDF", file, "requirements.pdf", "application/pdf")
 
-from jira import JIRA
 import streamlit as st
 from jira import JIRA
 
-from jira import JIRA
-import streamlit as st
-
-def create_jira_ticket(summary, description):
+# —————— Jira helper ——————
+def create_jira_ticket(summary: str, description: str) -> str:
+    """Creates a Jira issue and returns its key."""
     jira_options = {"server": st.secrets["JIRA_SERVER"]}
-
     jira = JIRA(
         options=jira_options,
         basic_auth=(st.secrets["JIRA_EMAIL"], st.secrets["JIRA_API_TOKEN"])
     )
-
-    # ✅ Instead of using session_state directly, store a fixed project key
-    project_key = st.secrets["JIRA_PROJECT_KEY"]  # Add this to your Streamlit secrets
-
     new_issue = jira.create_issue(
-        project=project_key,      # Use Jira project key (like "SAM1")
+        project=st.secrets["JIRA_PROJECT_KEY"],  # e.g. "SAM1"
         summary=summary,
         description=description,
-        issuetype={"name": "Task"}
+        issuetype={"name": "Task"}               # or "Story", "Bug", etc.
     )
     return new_issue.key
+
+# —————— Your main app ——————
+st.title("AI Requirements Gathering Assistant")
+# … your inputs & OpenAI logic here …
+# Let's assume you stored the AI output in:
+#    st.session_state["generated_text"]
+#    project_name = st.session_state["project_name"]  (or a local variable)
+
+# Display the generated requirements:
+if "generated_text" in st.session_state:
+    st.markdown("### Generated Requirements")
+    st.text_area("", st.session_state["generated_text"], height=300)
+
+    # Button to push to Jira
+    if st.button("📌 Create Jira Ticket"):
+        try:
+            ticket_key = create_jira_ticket(
+                summary=f"Requirements for {project_name}",
+                description=st.session_state["generated_text"]
+            )
+            st.success(f"✅ Jira ticket created: {ticket_key}")
+        except Exception as e:
+            st.error(f"❌ Failed to create Jira ticket: {e}")
+
 
 
