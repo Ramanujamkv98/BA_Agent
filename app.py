@@ -4,18 +4,14 @@ from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
 st.markdown(
-    """
-    <style>
-        .top-left-logo {
-            position: fixed;
-            top: 10px;
-            left: 10px;
-            width: 50px;       /* Try reducing this to 40px or 30px */
-            height: auto;
-            object-fit: contain;  /* Ensures full logo is visible */
-        }
-    </style>
-    <img class="top-left-logo" src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp">
+    f"""
+    <div style="text-align:center; margin-bottom:10px;">
+        <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp" style="width:80px; margin-bottom:10px;">
+        <h1 style="color:white; font-size:36px;">📝 AI Business Analyst Assistant</h1>
+        <p style="color:#ddd; font-size:16px;">
+            Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.
+        </p>
+    </div>
     """,
     unsafe_allow_html=True
 )
