@@ -10,10 +10,8 @@ st.markdown(
             position: fixed;
             top: 15px;
             right: 20px;
-            width: 60px;  /* Default size */
+            width: 60px;
         }
-
-        /* Make it smaller on mobile screens */
         @media (max-width: 768px) {
             .top-right-logo {
                 width: 45px;
@@ -22,10 +20,11 @@ st.markdown(
             }
         }
     </style>
-    <img class="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp" src="PASTE-YOUR-RAW-URL-HERE">
+    <img class="top-right-logo" src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp">
     """,
     unsafe_allow_html=True
 )
+
 
 st.markdown(
     "<h1 style='text-align:center; color:white;'>📝 AI Business Analyst Assistant</h1>",
