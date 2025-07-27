@@ -84,6 +84,9 @@ from jira import JIRA
 import streamlit as st
 from jira import JIRA
 
+from jira import JIRA
+import streamlit as st
+
 def create_jira_ticket(summary, description):
     jira_options = {"server": st.secrets["JIRA_SERVER"]}
 
@@ -92,24 +95,15 @@ def create_jira_ticket(summary, description):
         basic_auth=(st.secrets["JIRA_EMAIL"], st.secrets["JIRA_API_TOKEN"])
     )
 
+    # ✅ Instead of using session_state directly, store a fixed project key
+    project_key = st.secrets["JIRA_PROJECT_KEY"]  # Add this to your Streamlit secrets
+
     new_issue = jira.create_issue(
-        project="SAM1",  # Replace with your Jira project key if different
+        project=project_key,      # Use Jira project key (like "SAM1")
         summary=summary,
         description=description,
-        issuetype={"name": "Task"}  # Change to "Story", "Bug", etc. if needed
+        issuetype={"name": "Task"}
     )
-
     return new_issue.key
-
-if st.session_state.get("generated_text"):
-    if st.button("Create Jira Ticket"):
-        try:
-            issue_key = create_jira_ticket(
-                summary="Requirements for " + st.session_state["(Example) Fitness and Health Goals"],
-                description=st.session_state["generated_text"]
-            )
-            st.success(f"✅ Jira Ticket Created: {issue_key}")
-        except Exception as e:
-            st.error(f"❌ Failed to create Jira Ticket: {e}")
 
 
