@@ -4,34 +4,35 @@ from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
 
+# --------- CUSTOM CSS for BLACK BACKGROUND + WHITE TEXT ----------
 st.markdown("""
     <style>
         .stApp {
-            background-color: #f7f7f8;
-            font-family: "Segoe UI", sans-serif;
+            background-color: #111111;
+            color: #ffffff;
         }
         .title-text {
             font-size: 32px;
             font-weight: bold;
             text-align: center;
             padding: 10px;
-            color: #202123;  /* Darker text */
+            color: white;
         }
         .subtitle-text {
             text-align: center;
             font-size: 16px;
-            color: #3c4043;  /* Dark gray */
+            color: #dddddd;
             margin-bottom: 20px;
         }
         .chat-box {
-            background-color: #ffffff;
-            border: 1px solid #ddd;
+            background-color: #1e1e1e;
+            border: 1px solid #333;
             border-radius: 12px;
             padding: 15px;
-            margin-bottom: 15px;
+            margin-top: 20px;
             font-size: 16px;
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.1);
-            color: #202123;  /* Ensure output text is visible */
+            box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
+            color: #eeeeee;
         }
         .stButton button {
             width: 100%;
@@ -41,16 +42,20 @@ st.markdown("""
             color: white;
             font-weight: bold;
         }
+        .stTextInput > div > input,
+        .stTextArea > div > textarea,
+        .stSelectbox > div > div {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
     </style>
 """, unsafe_allow_html=True)
 
-
 # --------- PAGE TITLE ----------
 st.markdown('<p class="title-text">📝 AI Business Analyst Assistant</p>', unsafe_allow_html=True)
-st.markdown('<p class="subtitle-text">Generate user stories, acceptance criteria, and BRD summaries based on methodology & technology.</p>', unsafe_allow_html=True)
+st.markdown('<p class="subtitle-text">Generate user stories, acceptance criteria, and BRD summaries based on selected methodology & technology.</p>', unsafe_allow_html=True)
 
-
-# --------- INPUTS ----------
+# --------- INPUT SECTION ----------
 project_name = st.text_input("📌 Project Name")
 project_desc = st.text_area("🖋️ Project Description")
 
@@ -58,16 +63,15 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     industry_type = st.selectbox("🏭 Industry", ["Logistics", "Healthcare", "E-commerce", "Finance", "Education", "Technology"])
-
 with col2:
     methodology = st.selectbox("📈 Methodology", ["Agile", "Scrum", "Waterfall", "Hybrid"])
-
 with col3:
     technology_stack = st.selectbox("💻 Technology", ["Salesforce", "SAP", "AWS", "Azure", "Custom Web App", "Mobile App"])
 
+# --------- API KEY ---------
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# --------- GENERATE BUTTON ----------
+# --------- GENERATE OUTPUT ----------
 if st.button("🚀 Generate Requirements"):
     with st.spinner("Generating requirements..."):
         prompt = f"""
@@ -92,7 +96,6 @@ if st.button("🚀 Generate Requirements"):
             )
             output = response.choices[0].message.content
             st.session_state["generated_text"] = output
-
             st.markdown(f'<div class="chat-box">{output}</div>', unsafe_allow_html=True)
 
         except Exception as e:
