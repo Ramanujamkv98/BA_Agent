@@ -3,7 +3,8 @@ import openai
 from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
-st.markdown("""
+st.markdown(
+    """
     <style>
         .logo-container {
             position: absolute;
@@ -11,13 +12,16 @@ st.markdown("""
             left: 20px;
         }
         .logo-container img {
-            width: 60px;
+            width: 120px; /* Change this to increase size */
         }
     </style>
     <div class="logo-container">
         <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2010.41.49%20-%20A%20professional%20and%20modern%20logo%20for%20a%20business%20intelligence%20assistant%20chatbot%2C%20incorporating%20the%20letters%20'BA'%20in%20a%20creative%20way.%20The%20design%20should%20look.webp">
     </div>
-""", unsafe_allow_html=True)
+    """,
+    unsafe_allow_html=True
+)
+
 
 # --------- CUSTOM CSS for BLACK BACKGROUND + WHITE TEXT ----------
 st.markdown("""
