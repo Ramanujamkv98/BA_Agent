@@ -8,28 +8,18 @@ st.set_page_config(page_title="AI Requirements Gathering Assistant", layout="cen
 
 st.markdown(
     """
-    <div style="text-align:center; margin-bottom:20px;">
-        <img src="https://raw.githubusercontent.com/YourUser/YourRepo/main/logo.png" width="80" style="margin-bottom:10px;">
+    <div style="text-align:center; margin-bottom:30px;">
+        <img src="https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp" width="100" style="margin-bottom:10px;" />
         <h1 style="color:white; margin:0;">📝 AI Requirements Gathering Assistant</h1>
-        <p style="color:#ddd; margin:0;">Generate user stories, acceptance criteria, and BRD summaries with smart technology recommendations.</p>
+        <p style="color:#ddd;">Generate user stories, acceptance criteria, and BRD summaries with smart technology recommendations.</p>
     </div>
     """,
     unsafe_allow_html=True
 )
+
 
 # Load OpenAI API key from secrets
 openai.api_key = st.secrets["OPENAI_API_KEY"]
-
-# Add logo above the title
-# Centered logo above the title
-st.markdown(
-    """
-    <div style='text-align: center;'>
-        <img src='https://raw.githubusercontent.com/Ramanujamkv98/BA_Agent/refs/heads/main/DALL%C2%B7E%202025-07-27%2011.03.59%20-%20A%20modern%20neon%20lights%20style%20logo%20design%20for%20a%20business%20intelligence%20assistant%20chatbot.%20The%20logo%20should%20feature%20a%20glowing%20chatbot%20icon%20with%20a%20speech%20bub.webp' width='120'>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 # Input fields
 project_name = st.text_input("📌 Project Name")
