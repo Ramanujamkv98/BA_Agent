@@ -32,7 +32,7 @@ industry = st.selectbox("🏢 Industry", ["Logistics", "Finance", "Education", "
 methodology = st.selectbox("📈 Methodology", ["Agile", "Waterfall", "Scrum", "Kanban"])
 technology = st.selectbox(
     "💻 Technology",
-    ["Web App + Cloud Backend", "Mobile App + Cloud Backend", "Salesforce Experience Cloud", "SAP", "Cloud Hosted Solution (AWS/Azure)"]
+    ["Web App + Cloud Backend", "Mobile App + Cloud Backend", "Salesforce Experience Cloud", "SAP"]
 )
 
 # Function to generate requirements
