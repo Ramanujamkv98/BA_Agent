@@ -101,4 +101,15 @@ def create_jira_ticket(summary, description):
 
     return new_issue.key
 
+if st.session_state.get("generated_text"):
+    if st.button("Create Jira Ticket"):
+        try:
+            issue_key = create_jira_ticket(
+                summary="Requirements for " + st.session_state["project_name"],
+                description=st.session_state["generated_text"]
+            )
+            st.success(f"✅ Jira Ticket Created: {issue_key}")
+        except Exception as e:
+            st.error(f"❌ Failed to create Jira Ticket: {e}")
+
 
