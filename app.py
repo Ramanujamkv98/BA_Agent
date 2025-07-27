@@ -3,6 +3,8 @@ import openai
 from fpdf import FPDF
 
 st.set_page_config(page_title="AI BA Assistant", page_icon="🤖", layout="centered")
+
+# --------- CUSTOM CSS (Dark Mode UI) ----------
 st.markdown(
     f"""
     <div style="text-align:center; margin-bottom:10px;">
@@ -18,56 +20,7 @@ st.markdown(
 
 
 
-
-# --------- CUSTOM CSS for BLACK BACKGROUND + WHITE TEXT ----------
-st.markdown("""
-    <style>
-        .stApp {
-            background-color: #111111;
-            color: #ffffff;
-        }
-        .title-text {
-            font-size: 32px;
-            font-weight: bold;
-            text-align: center;
-            padding: 10px;
-            color: white;
-        }
-        .subtitle-text {
-            text-align: center;
-            font-size: 16px;
-            color: #dddddd;
-            margin-bottom: 20px;
-        }
-        .chat-box {
-            background-color: #1e1e1e;
-            border: 1px solid #333;
-            border-radius: 12px;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 16px;
-            box-shadow: 0px 1px 3px rgba(0,0,0,0.2);
-            color: #eeeeee;
-        }
-        .stButton button {
-            width: 100%;
-            font-size: 18px;
-            border-radius: 10px;
-            background-color: #10a37f;
-            color: white;
-            font-weight: bold;
-        }
-        .stTextInput > div > input,
-        .stTextArea > div > textarea,
-        .stSelectbox > div > div {
-            background-color: #1e1e1e;
-            color: #ffffff;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
-
-# --------- INPUT SECTION ----------
+# --------- INPUT FIELDS ----------
 project_name = st.text_input("📌 Project Name")
 project_desc = st.text_area("🖋️ Project Description")
 
@@ -75,30 +28,44 @@ col1, col2, col3 = st.columns(3)
 
 with col1:
     industry_type = st.selectbox("🏭 Industry", ["Logistics", "Healthcare", "E-commerce", "Finance", "Education", "Technology"])
+
 with col2:
-    methodology = st.selectbox("📈 Methodology", ["Agile", "Scrum", "Waterfall", "Hybrid"])
+    methodology = st.selectbox("📈 Preferred Methodology", ["Agile", "Scrum", "Waterfall", "Hybrid"])
+
 with col3:
-    technology_stack = st.selectbox("💻 Technology", ["Salesforce", "SAP", "AWS", "Azure", "Custom Web App", "Mobile App"])
+    technology_stack = st.selectbox("💻 Preferred Technology",
+        ["Web App + Cloud Backend", "Mobile App + Cloud Backend", "Salesforce", "SAP", "Cloud Hosted Solution (AWS/Azure)"])
 
 # --------- API KEY ---------
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
-# --------- GENERATE OUTPUT ----------
+# --------- GENERATE BUTTON ----------
 if st.button("🚀 Generate Requirements"):
-    with st.spinner("Generating requirements..."):
+    with st.spinner("Generating best recommendations..."):
         prompt = f"""
+        You are an expert Business Analyst. Evaluate the following project details:
+
         Project Name: {project_name}
         Description: {project_desc}
         Industry: {industry_type}
-        Methodology: {methodology}
-        Technology Stack: {technology_stack}
+        Preferred Methodology (user selected): {methodology}
+        Preferred Technology (user selected): {technology_stack}
 
-        Generate:
-        1. 3 user stories aligned with {methodology} principles.
-        2. 3 acceptance criteria in {methodology}-appropriate format.
-        3. A BRD summary including Objective, Scope, Stakeholders, Risks.
-        4. A short explanation of why {methodology} is ideal for this project.
-        5. A short explanation of why {technology_stack} is suitable for this solution.
+        Your tasks:
+        1. Based on the project description, decide if the chosen methodology ({methodology}) is the best fit. 
+           - If yes, confirm it and explain why.
+           - If no, suggest a better methodology and explain why it fits better.
+
+        2. Evaluate if the selected technology ({technology_stack}) is the right choice. 
+           - If yes, confirm and explain why.
+           - If no, recommend a more suitable technology (e.g., Web App, Mobile App, Salesforce, SAP) 
+             and explain why it's a better choice.
+
+        3. Generate 3 user stories aligned with the **recommended methodology**.
+        4. Generate 3 acceptance criteria using the **recommended methodology's format**.
+        5. Provide a short BRD summary (Objective, Scope, Stakeholders, Risks).
+
+        Always act as a decision-maker. If the user's choice is not ideal, clearly recommend the better option.
         """
 
         try:
@@ -121,10 +88,8 @@ if "generated_text" in st.session_state:
         pdf.add_page()
         pdf.set_font("Arial", size=12)
 
-        # Fix encoding issue
         clean_text = st.session_state["generated_text"].encode("latin-1", "replace").decode("latin-1")
         pdf.multi_cell(0, 10, clean_text)
-
         pdf.output("requirements.pdf")
 
         with open("requirements.pdf", "rb") as file:
