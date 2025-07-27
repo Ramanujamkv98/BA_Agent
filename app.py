@@ -81,16 +81,24 @@ if "generated_text" in st.session_state:
         st.download_button("📄 Download as PDF", file, "requirements.pdf", "application/pdf")
 
 from jira import JIRA
+import streamlit as st
+from jira import JIRA
 
 def create_jira_ticket(summary, description):
-    jira_options = {"server": "domain"}
-    jira = JIRA(options=jira_options, basic_auth=("your-email", "your-api-token"))
+    jira_options = {"server": st.secrets["JIRA_SERVER"]}
+
+    jira = JIRA(
+        options=jira_options,
+        basic_auth=(st.secrets["JIRA_EMAIL"], st.secrets["JIRA_API_TOKEN"])
+    )
 
     new_issue = jira.create_issue(
-        project="PROJ",  # Replace with your project key
+        project="SAM1",  # Replace with your Jira project key if different
         summary=summary,
         description=description,
-        issuetype={"name": "Task"}
+        issuetype={"name": "Task"}  # Change to "Story", "Bug", etc. if needed
     )
+
     return new_issue.key
+
 
